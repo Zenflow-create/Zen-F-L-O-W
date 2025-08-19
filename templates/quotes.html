@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Motivational Quotes - ZenFlow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* same style as before */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #8e9aaf 0%, #a8b5c4 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #2d3748;
+      background: linear-gradient(135deg, #6b7280, #8e9aaf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #quote-box {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 40px 32px;
+      font-size: 20px;
+      line-height: 1.6;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      margin-bottom: 32px;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2d3748;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #quote-box::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 60px;
+      color: rgba(142, 154, 175, 0.1);
+      font-family: serif;
+    }
+
+    #quote-box::after {
+      content: '"';
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      font-size: 60px;
+      color: rgba(142, 154, 175, 0.1);
+      font-family: serif;
+    }
+
+    button {
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 500;
+      background: linear-gradient(135deg, #8e9aaf, #a8b5c4);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 8px;
+      white-space: nowrap;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(142, 154, 175, 0.3);
+    }
+
+    button:active {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .back-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .quote-content {
+      animation: fadeIn 0.5s ease;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 32px;
+      }
+
+      #quote-box {
+        font-size: 18px;
+        padding: 32px 24px;
+        min-height: 160px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+        margin: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back-link">← Home</a>
+
+  <div class="container">
+    <h1>💬 Motivational Quotes</h1>
+    <div id="quote-box">Click "New Quote" to get inspired!</div>
+    <div class="button-group">
+      <button id="new-quote-btn">New Quote</button>
+    </div>
+  </div>
+
+  <script>
+    const quotes = [
+      { content: "The best way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+      { content: "Don't let yesterday take up too much of today.", author: "Will Rogers" },
+      { content: "It's not whether you get knocked down, it's whether you get up.", author: "Vince Lombardi" },
+      { content: "If you are working on something exciting, it will keep you motivated.", author: "Unknown" },
+      { content: "Success is not in what you have, but who you are.", author: "Bo Bennett" },
+      {content: "The harder you work for something, the greater you'll feel when you achieve it.", author: "Unknown"}
+      // Add more quotes here
+    
+    
+    
+    
+    ];
+
+    const quoteBox = document.getElementById('quote-box');
+    const newQuoteBtn = document.getElementById('new-quote-btn');
+
+    function showRandomQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const quote = quotes[randomIndex];
+      quoteBox.innerHTML = `<div class="quote-content">"${quote.content}" — <em>${quote.author}</em></div>`;
+    }
+
+    newQuoteBtn.addEventListener('click', showRandomQuote);
+
+    // Show a random quote on page load
+    showRandomQuote();
+  </script>
+</body>
+</html>
