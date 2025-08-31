@@ -30,10 +30,26 @@ def goals():
 def quotes():
     return render_template('quotes.html')
 
-@app.route('/themes')
-def themes():
-    return render_template('themes.html')
+
+@app.route('/api/mood', methods=['POST'])
+def set_mood():
+    from flask import request
+    data = request.get_json()
+    mood = data.get('mood')
+    # Here you could save mood to database
+    return jsonify({"status": "success", "mood": mood})
+
+@app.route('/api/achievement', methods=['POST'])  
+def log_achievement():
+    from flask import request
+    data = request.get_json()
+    achievement = data.get('achievement')
+    # Here you could save achievement to database
+    return jsonify({"status": "success", "achievement": achievement})
+
+
+
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=5000)
 
